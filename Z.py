@@ -222,13 +222,24 @@ def DIV_ZZ_Z(z1, z2):
     n2 = ABS_Z_N(z2)
     x1 = POZ_Z_D(z1)
     x2 = POZ_Z_D(z2)
-    if x1 == x2 and x1 == 1:
+    if COM_NN_D(n1, n2) == 1 and x1 == 2:
+        return integers("0")
+    elif COM_NN_D(n1, n2) == 1 and x1 == 1 and x2 == 1:
+        return integers("1")
+    elif COM_NN_D(n1, n2) == 1 and x1 == 1:
+        return integers("-1")
+    elif x1 == x2 and x1 == 2:
          """Если оба числа положительные, то проиходит их деление"""
          return TRANS_N_Z(DIV_NN_N(n1,n2))
-
-    elif x1 == x2 and x1 == 2:
+    elif x1 == x2 and x1 == 1 and COM_NN_D(MOD_NN_N(n1, n2), natural("0")) != 0:
+        """Если оба числа отрицательные и остаток от их деления не равен нулю, то к их делению прибавляется единица"""
+        return ADD_ZZ_Z(TRANS_N_Z(DIV_NN_N(n1,n2)), integers("1"))
+    elif x1 == x2 and x1 == 1:
         """Если оба числа отрицательные, то проиходит их деление"""
-        return TRANS_N_Z(DIV_NN_N(n1,n2))
+        return TRANS_N_Z(DIV_NN_N(n1, n2))
+    elif x1 == 1 and COM_NN_D(MOD_NN_N(n1, n2), natural("0")) != 0:
+        """Если первое число отрицательное, то проиходит их деление"""
+        return MUL_ZM_Z(ADD_ZZ_Z(TRANS_N_Z(DIV_NN_N(n1,n2)), integers("1")))
     else:
         """Во всех остальных случаях - деление с обратным знаком"""
         return MUL_ZM_Z(TRANS_N_Z(DIV_NN_N(n1,n2)))
@@ -240,4 +251,10 @@ def MOD_ZZ_Z(z1, z2):
     Функция получает на вход два целых числа любого знака.
     Используя формулу a = b * q + r,  где r - остаток,выражается r
         """
+    n1 = ABS_Z_N(z1)
+    n2 = ABS_Z_N(z2)
+    if COM_NN_D(n1, n2) == 1 and POZ_Z_D(z1) == 2:
+        return z1
+    elif COM_NN_D(n1, n2) == 1 and POZ_Z_D(z1) == 1:
+        return TRANS_N_Z(SUB_NN_N(n2, n1))
     return SUB_ZZ_Z(z1, MUL_ZZ_Z(z2, DIV_ZZ_Z(z1, z2)))
