@@ -333,7 +333,6 @@ class Window:
         self.buttonN_14.forget()
         self.entryN1.pack()
         self.entryN2.pack()
-        self.entryk.pack()
         self.buttonREZ.pack()
         nn = 5
 
@@ -418,6 +417,7 @@ class Window:
         self.buttonN_14.forget()
         self.entryN1.pack()
         self.entryN2.pack()
+        self.entryk.pack()
         self.buttonREZ.pack()
         nn = 9
 
@@ -1123,11 +1123,7 @@ class Window:
             n2 = natural(n)
             self.entryN2.delete(0, 'end')
             self.entryN2.forget()
-            k1 = self.entryk.get()
-            k = natural(k1)
-            self.entryk.delete(0, 'end')
-            self.entryk.forget()
-            otv = SUB_NDN_N(n1,n2,k)
+            otv = SUB_NN_N(n1, n2)
             self.l1.config(text=otv)
             self.l1.pack()
         elif nn == 6:
@@ -1177,7 +1173,11 @@ class Window:
             n2 = natural(n)
             self.entryN2.delete(0, 'end')
             self.entryN2.forget()
-            otv = SUB_NN_N(n1, n2)
+            k1 = self.entryk.get()
+            k = natural(k1)
+            self.entryk.delete(0, 'end')
+            self.entryk.forget()
+            otv = SUB_NDN_N(n1, n2, k)
             self.l1.config(text=otv)
             self.l1.pack()
         elif nn == 10:
