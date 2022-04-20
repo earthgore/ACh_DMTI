@@ -111,6 +111,8 @@ def DIV_PP_P(d, b):
         a.append(d.coe[i])
     a = polynom(a)
     n = a.digit - b.digit
+    if n < 0:
+        return polynom()
     '''Пока a >= b вычитаем из a произведение b на частное 
     от деления старшего коэффициента a на старший коэффициент b умноженное на x в соответствующей степени'''
     for i in range(n + 1):
