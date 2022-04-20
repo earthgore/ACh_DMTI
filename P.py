@@ -1,7 +1,7 @@
 from Q import *
 
 
-
+#by Alexandr Varfolomeev 1308
 class polynom:
     def __init__(self, a = [rational(integers("0"))]):
         self.digit = len(a) - 1
@@ -12,19 +12,27 @@ class polynom:
         for i in range(self.digit):
             if INT_Q_B(self.coe[i]):
                 if POZ_Z_D(self.coe[i].num) == 1:
-                    c += "(" + str(TRANS_Q_Z(self.coe[i])) + ")" + "x^" + str(self.digit - i) + "+"
+                    if self.coe[i].num.numbers != [0]:
+                        c += "(" + str(TRANS_Q_Z(self.coe[i])) + ")" + "x^" + str(self.digit - i) + "+"
                 else:
-                    c += str(TRANS_Q_Z(self.coe[i])) + "x^" + str(self.digit - i) + "+"
+                    if self.coe[i].num.numbers != [0]:
+                        c += str(TRANS_Q_Z(self.coe[i])) + "x^" + str(self.digit - i) + "+"
             else:
-                c += "(" + str(self.coe[i]) + ")" + "x^" + str(self.digit - i) + "+"
+                if self.coe[i].num.numbers != [0]:
+                    c += "(" + str(self.coe[i]) + ")" + "x^" + str(self.digit - i) + "+"
 
         if INT_Q_B(self.coe[-1]):
-            if POZ_Z_D(self.coe[-1].num) == 1:
+            if self.coe[-1].num.numbers == [0]:
+                c += "0"
+            elif POZ_Z_D(self.coe[-1].num) == 1:
                 c += "(" + str(TRANS_Q_Z(self.coe[-1])) + ")"
             else:
                 c += str(TRANS_Q_Z(self.coe[-1]))
         else:
-            c += "(" + str(self.coe[-1]) + ")"
+            if self.coe[-1].num.numbers == [0]:
+                c += "0"
+            else:
+                c += "(" + str(self.coe[-1]) + ")"
         return c
 
 
@@ -95,9 +103,13 @@ def MUL_PP_P(a, b):
         c = ADD_PP_P(c, MUL_Pxk_P(MUL_PQ_P(a, b.coe[i]), b.digit - i))
     return c
 
-def DIV_PP_P(a, b):
+def DIV_PP_P(d, b):
     '''Частное от деления многочлена на многочлен при делении с остатком'''
     c = []
+    a = []
+    for i in range(d.digit + 1):
+        a.append(d.coe[i])
+    a = polynom(a)
     n = a.digit - b.digit
     '''Пока a >= b вычитаем из a произведение b на частное 
     от деления старшего коэффициента a на старший коэффициент b умноженное на x в соответствующей степени'''
@@ -114,9 +126,13 @@ def DIV_PP_P(a, b):
         a.digit -= 1
     return polynom(c)
 
-def MOD_PP_P(a, b):
+def MOD_PP_P(d, b):
     '''Остаток от деления многочлена на многочлен при делении с остатком'''
     c = []
+    a = []
+    for i in range(d.digit + 1):
+        a.append(d.coe[i])
+    a = polynom(a)
     n = a.digit - b.digit
     '''Пока a >= b вычитаем из a произведение b на частное 
         от деления старшего коэффициента a на старший коэффициент b умноженное на x в соответствующей степени'''

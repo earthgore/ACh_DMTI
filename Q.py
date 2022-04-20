@@ -1,6 +1,6 @@
 from Z import *
 
-
+#by Nikita Vaganov 1308
 class rational:
     def __init__(self, c, n=natural("1")):
         self.num = c
