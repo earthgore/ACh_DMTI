@@ -196,6 +196,7 @@ def GCF_PP_P(a, b):
 def NMR_P_P(a):
     '''Преобразование многочлена — кратные корни в простые'''
     '''Делим многочлен на НОД мночлена и его производной, чтобы избавится от корней кратности выше единицы'''
-    return DIV_PP_P(a, GCF_PP_P(a, DER_P_P(a)))
+    b = DIV_PP_P(a, GCF_PP_P(a, DER_P_P(a)))
+    return MUL_PQ_P(b, rational(TRANS_N_Z(b.coe[0].denum)))
 
 
