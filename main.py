@@ -26,7 +26,7 @@ class Window:
         self.entryQ1 = Entry(self.root, font="Arial 50")
         self.entryQ2 = Entry(self.root, font="Arial 50")
         self.entryk = Entry(self.root, font="Arial 50")
-        self.l1 = Label(self.root, text='', width=90, bg="#b2ec5d", relief=FLAT, wraplength=400, font="Arial 50")
+        self.l1 = Label(self.root, text='', width=90, bg="#b2ec5d", relief=FLAT, wraplength=400, font="Arial 20")
         self.buttonREZ = Button(self.root, text="Показать результат", width=90, height=1, bg="#b2ec5d",  command=self.zoutput, font="Impact 20")
         self.buttonBA = Button(self.root, text="Вернуться на главную", width=90, height=1, bg="#ff0000",  command=self.draw_widgets, font="Impact 20")
         self.buttonN = Button(self.root, text="Натуральные числа с нулем", width=90, height=3, bg="#7fc7ff",  command=self.get_algN, font="Arial 30")

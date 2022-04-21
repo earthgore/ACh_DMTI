@@ -85,7 +85,9 @@ def ADD_QQ_Q(a, b):
 def SUB_QQ_Q(a, b):
     '''Функция вычитания дробей
     Входные данные : два рациональных числа'''
-    c = ADD_QQ_Q(a, rational(MUL_ZM_Z(b.num), b.denum))
+    nk = MUL_NN_N(a.denum, b.denum)
+    nn = SUB_ZZ_Z(MUL_ZZ_Z(a.num, TRANS_N_Z(b.denum)), MUL_ZZ_Z(b.num, TRANS_N_Z(a.denum)))
+    c = RED_Q_Q(rational(nn, nk))
     return c
 
 
