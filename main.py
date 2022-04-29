@@ -1174,7 +1174,7 @@ class Window:
             self.entryN2.delete(0, 'end')
             self.entryN2.forget()
             k1 = self.entryk.get()
-            k = natural(k1)
+            k = int(k1)
             self.entryk.delete(0, 'end')
             self.entryk.forget()
             otv = SUB_NDN_N(n1, n2, k)
